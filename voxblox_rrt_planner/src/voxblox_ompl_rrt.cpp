@@ -6,7 +6,7 @@ VoxbloxOmplRrt::VoxbloxOmplRrt(const ros::NodeHandle& nh,
                                const ros::NodeHandle& nh_private)
     : nh_(nh),
       nh_private_(nh_private),
-      planner_type_(kRrtStar),
+      planner_type_(kBitStar),
       num_seconds_to_plan_(2.5),
       simplify_solution_(true),
       robot_radius_(1.0),

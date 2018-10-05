@@ -18,14 +18,14 @@ bool VelocityRampSmoother::getPathBetweenTwoPoints(
   double total_segment_distance = (goal.position_W - start.position_W).norm();
   // Total time needed to get to max speed (or go from max speed to 0).
   double min_acceleration_time = constraints_.v_max / constraints_.a_max;
-  // The amount of distance covered during the acceleration (or decceleration
+  // The amount of distance covered during the acceleration (or deceleration
   // process).
   double min_acceleration_distance =
       constraints_.v_max * min_acceleration_time -
       0.5 * constraints_.a_max * min_acceleration_time * min_acceleration_time;
 
   double total_segment_time = 0.0;
-  // Case 1: time is shorter than the acceleration and decceleration time.
+  // Case 1: time is shorter than the acceleration and deceleration time.
   if (total_segment_distance < 2 * min_acceleration_distance) {
     total_segment_time =
         2 * std::sqrt(total_segment_distance / constraints_.a_max);
@@ -70,7 +70,7 @@ bool VelocityRampSmoother::getPathBetweenTwoPoints(
     // Integrate velocity to get position.
     position += velocity * constraints_.sampling_dt;
 
-    // Figure out if we're accelerating, deccelerating, or neither.
+    // Figure out if we're accelerating, decelerating, or neither.
     // Handle Case 1 first:
     if (total_segment_time < min_acceleration_time * 2) {
       if (current_time < total_segment_time / 2.0) {
