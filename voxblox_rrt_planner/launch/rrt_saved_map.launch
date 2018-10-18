@@ -2,9 +2,10 @@
 <launch>
   <arg name="voxblox_path" default="/home/tuan/bags/outdoor.voxblox" />
   <arg name="frame_id" default="map" />
-  <arg name="rviz_config_file" value="$(find voxblox_ros)/launch/voxblox.rviz"/>
+  <arg name="rviz_config_file" value="$(find voxblox_rrt_planner)/launch/voxblox_rrt.rviz"/>
+  <arg name="launch_prefix" value="gdb -ex run --args"/>
 
-  <node name="voxblox_rrt_planner" pkg="voxblox_rrt_planner" type="voxblox_rrt_planner_node" output="screen">
+  <node name="voxblox_rrt_planner" pkg="voxblox_rrt_planner" type="voxblox_rrt_planner_node" output="screen"  >
     <param name="voxblox_path" value="$(arg voxblox_path)" />
     <param name="visualize" value="true" />
     <param name="robot_radius" value="0.5" />
@@ -21,7 +22,7 @@
     <param name="verbose" value="true" />
   </node>
 
-  <!-- rviz node -->
+  <!-- rviz node launch-prefix="$(arg launch_prefix)"-->
   <node name="visualizer" pkg="rviz" type="rviz" output="screen" args="-d $(arg rviz_config_file)" />
 
 </launch>

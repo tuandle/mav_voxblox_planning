@@ -3,6 +3,7 @@
 
 #include <ompl/base/objectives/PathLengthOptimizationObjective.h>
 #include <ompl/base/spaces/SE3StateSpace.h>
+#include <ompl/base/spaces/SE2StateSpace.h>
 #include <ompl/geometric/SimpleSetup.h>
 #include <ompl/geometric/planners/bitstar/BITstar.h>
 #include <ompl/geometric/planners/prm/PRM.h>
@@ -19,8 +20,9 @@ namespace mav {
 // Setup class for a geometric planning problem with R3 state space.
 class MavSetup : public geometric::SimpleSetup {
  public:
-  MavSetup() : geometric::SimpleSetup(base::StateSpacePtr(new StateSpace(3))) {}
-
+  /*MavSetup() : geometric::SimpleSetup(base::StateSpacePtr(new StateSpace(3))) {}*/
+  // change to 2 for 2D constraints
+  MavSetup() : geometric::SimpleSetup(base::StateSpacePtr(new StateSpace(2))) {}
   // Get some defaults.
   void setDefaultObjective() {
     getProblemDefinition()->setOptimizationObjective(

@@ -33,7 +33,8 @@ bool PolynomialSmoother::getTrajectoryBetweenWaypoints(
       "smoothing/poly_linear");
 
   constexpr int N = 10;
-  constexpr int D = 3;
+  /*constexpr int D = 3;*/
+  constexpr int D = 2;
   mav_trajectory_generation::PolynomialOptimization<N> poly_opt(D);
 
   int num_vertices = waypoints.size();

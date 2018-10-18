@@ -2,6 +2,7 @@
 #define VOXBLOX_RRT_PLANNER_OMPL_OMPL_TYPES_H_
 
 #include <ompl/base/spaces/SE3StateSpace.h>
+#include <ompl/base/spaces/SE2StateSpace.h>
 #include <Eigen/Core>
 
 namespace ompl {
@@ -15,6 +16,15 @@ inline Eigen::Vector3d omplToEigen(const base::State* state) {
       static_cast<const mav::StateSpace::StateType*>(state);
   Eigen::Vector3d eigen_state(derived->values[0], derived->values[1],
                               derived->values[2]);
+
+  return eigen_state;
+}
+
+inline Eigen::Vector2d omplToEigen2D(const base::State* state) {
+  const mav::StateSpace::StateType* derived =
+      static_cast<const mav::StateSpace::StateType*>(state);
+  // ugly fix z, should take value of what?
+  Eigen::Vector2d eigen_state(derived->values[0], derived->values[1]);
 
   return eigen_state;
 }
